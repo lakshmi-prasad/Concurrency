@@ -1,0 +1,28 @@
+package com.td.cc.pingpong;
+
+import java.util.concurrent.Semaphore;
+
+public class Pong implements Runnable {
+
+	Semaphore s;
+
+	Pong(Semaphore s) {
+		this.s = s;
+	}
+
+	@Override
+	public void run() {
+		try {
+
+			s.acquire();
+			System.out.println("PONG");
+			s.release();
+
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+}
