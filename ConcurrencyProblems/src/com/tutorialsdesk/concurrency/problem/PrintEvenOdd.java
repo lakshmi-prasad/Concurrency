@@ -1,7 +1,6 @@
 package com.tutorialsdesk.concurrency.problem;
 
 public class PrintEvenOdd {
-
 	public static void main(String... args) {
 		Printer print = new Printer();
 		Thread t1 = new Thread(new TaskEvenOdd(print, 10, false));
@@ -9,20 +8,17 @@ public class PrintEvenOdd {
 		t1.start();
 		t2.start();
 	}
-
 }
 
 class TaskEvenOdd implements Runnable {
 	private int max;
 	private Printer print;
 	private boolean isEvenNumber;
-
 	TaskEvenOdd(Printer print, int max, boolean isEvenNumber) {
 		this.print = print;
 		this.max = max;
 		this.isEvenNumber = isEvenNumber;
 	}
-
 	@Override
 	public void run() {
 		int number = isEvenNumber == true ? 2 : 1;
@@ -39,7 +35,6 @@ class TaskEvenOdd implements Runnable {
 
 class Printer {
 	boolean isOdd = false;
-
 	synchronized void printEven(int number) {
 		while (isOdd == false) {
 			try {
@@ -52,7 +47,6 @@ class Printer {
 		isOdd = false;
 		notifyAll();
 	}
-
 	synchronized void printOdd(int number) {
 		while (isOdd == true) {
 			try {

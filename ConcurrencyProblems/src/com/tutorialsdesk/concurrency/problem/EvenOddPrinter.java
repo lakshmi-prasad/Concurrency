@@ -2,9 +2,7 @@ package com.tutorialsdesk.concurrency.problem;
 
 public class EvenOddPrinter {
 	static boolean flag = true;
-
 	public static void main(String[] args) {
-		
 		Runnable odd = () -> {
 			for (int i = 1; i <= 10;) {
 				if (EvenOddPrinter.flag) {
@@ -29,6 +27,5 @@ public class EvenOddPrinter {
 		Thread t2 = new Thread(even, "Even");
 		t1.start();
 		t2.start();
-		
 	}
 }
